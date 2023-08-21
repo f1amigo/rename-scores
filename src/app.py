@@ -46,6 +46,7 @@ class Gui(tk.Frame):
         self.controller = controller
         self.checkboxes = None
         self.vars = []
+        self.selected_vars = []
 
         self.create_page()
         self.scrollFrame.pack(side="top", fill="both", expand=True)
@@ -73,7 +74,7 @@ class Gui(tk.Frame):
         btn_done.bind("<Button-1>", self.done_btn_clicked)
     
     def done_btn_clicked(self, event):
-        util.run(self.vars)
+        util.run(self.controller.shared.get("folder"), "piece_title", self.vars)
         self.master.quit()
 
     def create_checkboxes(self, frame):
@@ -105,9 +106,8 @@ class Gui(tk.Frame):
                 checkbox = ttk.Checkbutton(
                     frame,
                     text=_,
-                    variable=var,
-                    onvalue=1,
-                    offvalue=0
+                    command=check_changed,
+                    variable=var
                 )
 
                 checkbox.grid(row=r, column=col, padx=2, pady=10)
@@ -116,6 +116,14 @@ class Gui(tk.Frame):
                 r += 1
         
         return checkboxes
+
+    def check_changed(self, var):
+        if int(var.get()):
+            self.selected_vars.append(var.get())
+        else:
+            self.selected_vars.remove(var.get())
+        
+
 
 class ScrollFrame(tk.Frame):
     """
