@@ -1,5 +1,4 @@
-import os
-from pathlib import Path
+
 
 def extract_part_names(part_names):
     """
@@ -15,22 +14,14 @@ def extract_part_names(part_names):
         parts = [_.strip("\n") for _ in f]
     return parts
 
-def run(folder, piece, var_list):
+def get_piece():
     """
-    Runs the renaming portion of the programme.
+    Get the title of the piece from the user.
 
-    Args:
-        folder (str): path to the input folder
-        piece (str): path to the 
-        var_list (list): list of part names
+    Returns:
+        str: title of piece
     """
-    for var in var_list:
-        print(var.get())
-    count = 0
-    dst_dir = f"{folder}\\renamed_scores"
-    Path(dst_dir).mkdir(parents=True, exist_ok=True)
+    print("Enter the title of the piece:\n")
+    piece = input()
+    return piece
 
-    # Rename all files in folder
-    for file, var in zip(os.listdir(folder), var_list):
-        os.rename(f"{folder}\\{file}", f"{dst_dir}\\{count:02}-{piece}-{var.get()}.pdf", dst_dir_fd=dst_dir)
-        count += 1
