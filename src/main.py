@@ -1,5 +1,6 @@
 import argparse
 import app
+import gui
 
 
 if __name__ == '__main__':
@@ -10,7 +11,9 @@ if __name__ == '__main__':
     parser.add_argument("-i", "--input", type=str, help="path to folder", default="test")
     args = parser.parse_args()
 
-    # gui = app.App(folder=args.input)
-    # gui.title("Rename scores")
-    # gui.geometry("1080x720")
-    # gui.mainloop()
+    
+
+    # interface = gui.App(folder=args.input)
+    # interface.title("Rename scores")
+    # interface.geometry("1080x720")
+    # interface.mainloop()
