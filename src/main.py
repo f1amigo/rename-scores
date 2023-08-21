@@ -8,10 +8,10 @@ if __name__ == '__main__':
         prog="Rename Scores",
         description="Renames the scores automatically."
     )
-    parser.add_argument("-i", "--input", type=str, help="path to folder", default="test")
+    parser.add_argument("-i", "--input", type=str, help="path to folder", default="../test")
     args = parser.parse_args()
 
-    
+    app.run(args.input, "../part_names.txt")
 
     # interface = gui.App(folder=args.input)
     # interface.title("Rename scores")
